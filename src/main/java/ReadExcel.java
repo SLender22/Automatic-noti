@@ -37,7 +37,38 @@ public class ReadExcel {
     public static ArrayList<Fund> data = new ArrayList<>();
     private static ArrayList<String> funddata = new ArrayList<>();
 
+    public static void main(String[] args) {
+/*    String是引用类型 所以创建的对象都是类似于一个指针的形式
+      所以如下四行代码中，s在第二次定义的时候，指向了内存空间一个新的地址2，它的内容是"world"
+      所以t指向的还是第一次定义的地址，值就是"hello"
+ */
+        String s = "hello";
+        String t = s;
+        s = "world";
+        System.out.println(t);
 
+        int l = 90;
+        System.out.println((char)l);
+        int i = 2147483647;
+        long j = 123124124141L;
+        float a = 3.4e38f;
+        double b = 1.79e308;
+        System.out.println(a);
+
+
+        int old = 78;
+        int newdata = 90;
+        System.out.printf("成绩的百分比%.2f%%",((newdata-old)*1.0/old)*100);
+
+
+        double x = 1-9.0/10;
+        System.out.println(x);
+        if(Math.abs(x-0.1)<0.00001)
+            System.out.println("x is 0.1");
+        int[] ns = {1,2};
+        ns = new int[5];
+
+    }
 
     public static ArrayList<Fund> readexcel(String path) throws Exception {
         if (path.endsWith(".xlsx")){

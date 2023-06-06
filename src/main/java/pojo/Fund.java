@@ -32,6 +32,35 @@ public class Fund {
 //    款项合计
     private String sum;
 
+    public Fund(String area, String proName, String company, String fcycle_investment, String days, String service_charge, String management_fee, String value_added_tax, String urban_construction_tax, String surcharge, String local_tax, String value_added_tax_surcharge, String value_added_tax_and_additional_taxes, String repay_capital, String sum, String sum_three) {
+        this.area = area;
+        this.proName = proName;
+        this.company = company;
+        this.fcycle_investment = fcycle_investment;
+        this.days = days;
+        this.service_charge = service_charge;
+        this.management_fee = management_fee;
+        this.value_added_tax = value_added_tax;
+        this.urban_construction_tax = urban_construction_tax;
+        this.surcharge = surcharge;
+        this.local_tax = local_tax;
+        this.value_added_tax_surcharge = value_added_tax_surcharge;
+        this.value_added_tax_and_additional_taxes = value_added_tax_and_additional_taxes;
+        this.repay_capital = repay_capital;
+        this.sum = sum;
+        this.sum_three = sum_three;
+    }
+
+    public String getSum_three() {
+        return sum_three;
+    }
+
+    public void setSum_three(String sum_three) {
+        this.sum_three = sum_three;
+    }
+
+    private String sum_three;
+
     public String getCompany() {
         return company;
     }

@@ -71,12 +71,11 @@ public class SwingLoginExample {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    WriteWord.out(text1.getText(), text2.getText(), "E:\\system_files\\Desktop\\新建 Microsoft Word 文档.docx");
+                    WriteWord.out(text1.getText(), text2.getText(), "E:\\system_files\\Desktop\\中江城投季度报表模板\\新建 Microsoft Word 文档.docx");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
     }
-
 }

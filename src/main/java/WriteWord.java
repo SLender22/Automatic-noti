@@ -1,20 +1,21 @@
-
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.xwpf.usermodel.*;
 import pojo.Fund;
 
 import java.io.*;
 import java.util.*;
-
-
-/**
- *问题1：GUI界面文件读取路径、输出路径的自定义化
- *问题2：一三季度 二四季度模板不一样
- */
+/*
+* 做本次项目遇到的问题
+* 1. Excel表格读取数据问题 每个Excel表格因为有不同的CellType 对不同的CellType不同的处理方法
+* 2. double精度问题，使用BigDecimal类进行解决
+* 3. 数据使用缩写而项目需要展开写的问题
+* 4. Word数据定位问题
+**/
 public class WriteWord {
+    public static void main(String[] args) throws Exception {
+    out("E:\\system_files\\Desktop\\中江城投季度报表\\2023年2季度苏银棚改基金试算（城投）.xlsx","E:\\system_files\\Desktop\\中江城投季度报表\\2023年2季度","E:\\system_files\\Desktop\\中江城投季度报表模板\\新建 Microsoft Word 文档.docx");
+    }
     public static ArrayList<Fund> truedata = new ArrayList<>();
-    public static void insertAndOutFile(String templateFilePath, String outFilePath, Map<String, String> map) throws IOException {
+    public static void insert(String templateFilePath, String outFilePath, Map<String, String> map) throws IOException {
 //        生成docx对象
         InputStream is = new FileInputStream(templateFilePath);
         XWPFDocument docx = new XWPFDocument(is);
@@ -35,7 +36,7 @@ public class WriteWord {
                         List<XWPFRun> runs = p.getRuns();
                         for (XWPFRun run : runs) {
                             String str = run.toString();
-                            System.out.println(str);
+//                            System.out.println(str);
                             Set<String> keySet = map.keySet();
                             for (String key : keySet) {
                                 if (str.trim().equals(key))
@@ -53,6 +54,9 @@ public class WriteWord {
         }
 
     }
+    /*
+    * 得到处理后的数据，将其写入模板并输出通知书
+    * */
     public static void out(String in,String out,String templatePath) throws Exception {
         truedata = ReadExcel.readexcel(in);
         int i = 1;
@@ -74,11 +78,12 @@ public class WriteWord {
                     String service = fund.getService_charge();
                     String management = fund.getManagement_fee();
                     String tax = fund.getValue_added_tax_and_additional_taxes();
-                    String sum = fund.getSum();
+                    String sum = fund.getSum_three();
+                    String money1 = fund.getRepay_capital();
                     Map<String, String> map = new HashMap<>();
                     map.put("year",year);
-                    map.put("month", "3");
-                    map.put("day", "21");
+                    map.put("month", "5");
+                    map.put("day", "30");
                     map.put("quarter", quarter1);
                     map.put("company", company);
                     map.put("proname", proname);
@@ -87,7 +92,9 @@ public class WriteWord {
                     map.put("anagemen", management);
                     map.put("tax", tax);
                     map.put("sum", sum);
-                    insertAndOutFile(templatePath, out+"\\"+year+"年"+quarter1+"季度服务费管理费通知"+i+"-"+proname+".docx", map);
+                    map.put("money1", money1);
+                    insert(templatePath, out+"\\"+year+"年"
+                            +quarter1+"季度服务费管理费通知"+i+"-"+proname+".docx", map);
                 }
             }
             i=i+1;

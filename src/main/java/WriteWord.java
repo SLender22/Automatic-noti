@@ -9,6 +9,7 @@ import java.util.*;
 * 2. double精度问题，使用BigDecimal类进行解决
 * 3. 数据使用缩写而项目需要展开写的问题
 * 4. Word数据定位问题
+* 5. 数据四舍五入问题
 **/
 public class WriteWord {
     public static void main(String[] args) throws Exception {
